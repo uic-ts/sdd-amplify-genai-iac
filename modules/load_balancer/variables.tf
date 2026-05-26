@@ -25,7 +25,7 @@ variable "target_group_name" {
 
 variable "target_group_port" {
   description = "The port of the target group"
-  type        = string  
+  type        = string
   default     = 3000
 }
 
@@ -64,4 +64,34 @@ variable "vpc_name" {
   description = "The name of the VPC"
   type        = string
   default     = "main-vpc"
+}
+
+variable "vpc_id" {
+  description = "ID of an existing VPC. If provided, skips VPC creation."
+  type        = string
+  default     = ""
+}
+
+variable "public_subnet_ids" {
+  description = "IDs of existing public subnets. If provided, skips subnet creation."
+  type        = list(string)
+  default     = []
+}
+
+variable "private_subnet_ids" {
+  description = "IDs of existing private subnets. If provided, skips subnet creation."
+  type        = list(string)
+  default     = []
+}
+
+variable "create_nat_gateway" {
+  description = "Whether to create a NAT Gateway. Required for ECS tasks in private subnets."
+  type        = bool
+  default     = true
+}
+
+variable "ssl_certificate_arn" {
+  description = "ARN of an existing ACM certificate. If provided, skips certificate creation."
+  type        = string
+  default     = ""
 }
