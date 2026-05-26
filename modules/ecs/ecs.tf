@@ -23,6 +23,7 @@ resource "aws_ecs_service" "service" {
   launch_type                       = "FARGATE"
   desired_count                     = var.desired_count
   health_check_grace_period_seconds = 900
+  availability_zone_rebalancing     = "ENABLED"
 
   network_configuration {
     subnets         = var.private_subnet_ids
